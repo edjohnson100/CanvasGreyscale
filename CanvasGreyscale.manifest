@@ -1,0 +1,13 @@
+{
+	"autodeskProduct": "Fusion",
+	"type": "script",
+	"id": "f83a4b91-2c7d-4e5f-a6b8-9c0d1e2f3a4b",
+	"author": "Ed Johnson",
+	"description": {
+		"": "Select and convert a color image to greyscale and insert as a canvas, optimized for Project Salvador workflows."
+	},
+	"version": "1.0.0",
+	"supportedOS": "windows|mac",
+	"editEnabled": true,
+	"iconFilename": "resources/LucyIcon.png"
+}

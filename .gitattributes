@@ -1,0 +1,5 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Explicitly ensure Python scripts use LF (standard for cross-platform execution)
+*.py text eol=lf

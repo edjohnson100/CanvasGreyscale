@@ -112,14 +112,14 @@ def run(context):
 
         # 4. Bring the new image into Fusion as a Canvas
         # log_msg("Creating canvas input data...")
-        rootComp = design.rootComponent
+        activeComp = design.activeComponent
         
-        canvasInput = rootComp.canvases.createInput(new_path, target_plane)
+        canvasInput = activeComp.canvases.createInput(new_path, target_plane)
         canvasInput.isSymmetric = True
         canvasInput.opacity = 50 
 
         # log_msg("Adding canvas to design...")
-        canvas = rootComp.canvases.add(canvasInput)
+        canvas = activeComp.canvases.add(canvasInput)
         
         if canvas:
             # log_msg("--- SUCCESS: Canvas added! Script Complete. ---")

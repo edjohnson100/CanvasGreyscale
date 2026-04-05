@@ -118,21 +118,32 @@ def run(context):
         canvasInput.isSymmetric = True
         canvasInput.opacity = 50 
 
-        # log_msg("Adding canvas to design...")
         canvas = activeComp.canvases.add(canvasInput)
         
         if canvas:
-            # log_msg("--- SUCCESS: Canvas added! Script Complete. ---")
+            # Force Fusion to process pending UI changes so the canvas exists in the tree
+            adsk.doEvents() 
             
-            # Pre-select the canvas so the user can just right-click to edit
-            ui.activeSelections.clear()
-            ui.activeSelections.add(canvas)
+            # The Magic Proxy Fix
+            canvas_to_select = canvas
+            if design.activeOccurrence:
+                # We are inside a subcomponent. We must select the "Proxy" hologram, not the native object.
+                try:
+                    canvas_to_select = canvas.createForAssemblyContext(design.activeOccurrence)
+                except:
+                    pass
+            
+            try:
+                ui.activeSelections.clear()
+                ui.activeSelections.add(canvas_to_select)
+            except:
+                pass # Absolute last resort fallback
             
             # Display final success and instruction dialog
             success_msg = (
                 f"Success! Greyscale canvas inserted.\n\n"
                 f"Permanent file saved to:\n{new_path}\n\n"
-                f"The canvas is currently selected. To adjust it, dismiss this box, right-click anywhere, and choose 'Edit Canvas'."
+                f"To adjust it, dismiss this box, right-click the canvas in the browser tree, and choose 'Edit Canvas'."
             )
             ui.messageBox(success_msg, 'CanvasGreyscale Complete')
             

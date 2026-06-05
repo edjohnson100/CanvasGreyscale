@@ -21,7 +21,13 @@ ehthumbs.db
 Desktop.ini
 
 # ----------------------
-# 3. Autodesk Fusion 360 Specifics
+# 3. Auto-installed dependencies
+# ----------------------
+# Pillow and other packages installed locally on Mac at runtime
+lib/
+
+# ----------------------
+# 4. Autodesk Fusion 360 Specifics
 # ----------------------
 # Fusion creates these backup files when you edit a manifest in the UI
 *.manifest.bak
